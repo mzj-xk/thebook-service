@@ -11,4 +11,7 @@ public interface AdminService {
     Result<?> addBook(Book book);
 
     Result<?> deleteBook(String id);
+
+    Result<?> updateBook(Book book);
+
 }

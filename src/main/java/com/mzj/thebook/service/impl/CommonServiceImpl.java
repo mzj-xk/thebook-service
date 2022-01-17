@@ -4,21 +4,19 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mzj.thebook.Result;
-import com.mzj.thebook.dao.CommonMapper;
+import com.mzj.thebook.dao.BookMapper;
 import com.mzj.thebook.entity.Book;
 import com.mzj.thebook.service.CommonService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-
 @Service
 @Transactional
 public class CommonServiceImpl implements CommonService {
-    private final CommonMapper commonMapper;
+    private final BookMapper bookMapper;
 
-    public CommonServiceImpl(CommonMapper commonMapper) {
-        this.commonMapper = commonMapper;
+    public CommonServiceImpl(BookMapper bookMapper) {
+        this.bookMapper = bookMapper;
     }
 
 
@@ -28,7 +26,7 @@ public class CommonServiceImpl implements CommonService {
         Page<Book> bookPage;
         try {
             LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery().like(Book::getName, query);
-            bookPage = commonMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
+            bookPage = bookMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
         }catch (Exception e) {
             System.out.println(e);
             return new Result<>().error();
@@ -41,7 +39,7 @@ public class CommonServiceImpl implements CommonService {
     public Result<?> findBookById(String id) {
         Book book = null;
         try {
-            book = commonMapper.findBookById(id);
+            book = bookMapper.selectById(id);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -53,7 +51,7 @@ public class CommonServiceImpl implements CommonService {
         Page<Book> bookPage;
         try {
             LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery();
-            bookPage = commonMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
+            bookPage = bookMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
         } catch (Exception e) {
             System.out.println(e);
             return new Result<>().error();

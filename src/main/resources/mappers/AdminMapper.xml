@@ -18,25 +18,25 @@
         from book_info;
     </select>
 
-    <insert id="addBook" parameterType="Book">
-        insert into book_info(id, name, cover, author, press, producer, price, pages_number, isbn, score)
-        values (#{id},
-                #{name},
-                #{cover},
-                #{author},
-                #{press},
-                #{producer},
-                #{price},
-                #{pagesNumber},
-                #{isbn},
-                #{score})
-    </insert>
+<!--    <insert id="addBook" parameterType="Book">-->
+<!--        insert into book_info(id, name, cover, author, press, producer, price, pages_number, isbn, score)-->
+<!--        values (#{id},-->
+<!--                #{name},-->
+<!--                #{cover},-->
+<!--                #{author},-->
+<!--                #{press},-->
+<!--                #{producer},-->
+<!--                #{price},-->
+<!--                #{pagesNumber},-->
+<!--                #{isbn},-->
+<!--                #{score})-->
+<!--    </insert>-->
 
-    <delete id="deleteBook" parameterType="String">
-        delete
-        from book_info
-        where id = #{id}
-    </delete>
+<!--    <delete id="deleteBook" parameterType="String">-->
+<!--        delete-->
+<!--        from book_info-->
+<!--        where id = #{id}-->
+<!--    </delete>-->
 
 
 </mapper>

@@ -30,5 +30,10 @@ public class AdminController {
         return adminServiceImpl.deleteBook(id);
     }
 
+    @PostMapping("/updateBook")
+    public Result<?> updateBook(@RequestBody Book book) {
+        return adminServiceImpl.updateBook(book);
+    }
+
 
 }
