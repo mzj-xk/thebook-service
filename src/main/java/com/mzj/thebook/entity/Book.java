@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName("book_info")
 public class Book {
-    @TableField
     private String id;
     private String name;
     private String cover;
@@ -22,9 +21,9 @@ public class Book {
     private float price;
     private int pagesNumber;
     private String isbn;
-    private float rank;
+    private float score;
 
-    public Book(String name, String cover, String author, String press, String producer, float price, int pagesNumber, String isbn, float rank) {
+    public Book(String name, String cover, String author, String press, String producer, float price, int pagesNumber, String isbn, float score) {
         this.name = name;
         this.cover = cover;
         this.author = author;
@@ -33,7 +32,7 @@ public class Book {
         this.price = price;
         this.pagesNumber = pagesNumber;
         this.isbn = isbn;
-        this.rank = rank;
+        this.score = score;
     }
 
 }

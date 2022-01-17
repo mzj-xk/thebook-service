@@ -10,9 +10,6 @@ import java.util.ArrayList;
 @Mapper
 public interface CommonMapper extends BaseMapper<Book> {
 
-    ArrayList<Book> findAllBook();
-
-    ArrayList<Book> findBookByName(String query);
 
     Book findBookById(String id);
 }

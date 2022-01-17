@@ -3,15 +3,11 @@
 <mapper namespace="com.mzj.thebook.dao.CommonMapper">
 
 
-    <select id="findAllBook" resultType="Book">
-        select *
-        from book_info;
-    </select>
 
-    <select id="findBookByName" parameterType="String" resultType="Book">
+    <select id="findBookById" parameterType="String" resultType="Book">
         select *
         from book_info
-        where name like concat('%', #{query}, '%')
+        where id = #{id}
     </select>
 
 

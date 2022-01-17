@@ -19,7 +19,7 @@
     </select>
 
     <insert id="addBook" parameterType="Book">
-        insert into book_info(id, name, cover, author, press, producer, price, pages_number, isbn, `rank`)
+        insert into book_info(id, name, cover, author, press, producer, price, pages_number, isbn, score)
         values (#{id},
                 #{name},
                 #{cover},
@@ -29,7 +29,7 @@
                 #{price},
                 #{pagesNumber},
                 #{isbn},
-                #{rank})
+                #{score})
     </insert>
 
     <delete id="deleteBook" parameterType="String">

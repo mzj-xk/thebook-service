@@ -22,28 +22,19 @@ public class CommonServiceImpl implements CommonService {
     }
 
 
-    @Override
-    public Result<?> findAllBook() {
-        ArrayList<Book> books;
-        try {
-            books = commonMapper.findAllBook();
-        } catch (Exception e) {
-            System.out.println(e);
-            return new Result<>().error();
-        }
-        return new Result<>().success(books);
-    }
 
     @Override
-    public Result<?> findBookByName(String query) {
-        ArrayList<Book> books;
+    public Result<?> findBookByName(String query, int pageNum, int pageSize) {
+        Page<Book> bookPage;
         try {
-            books = commonMapper.findBookByName(query);
-        } catch (Exception e) {
+            LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery().like(Book::getName, query);
+            bookPage = commonMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
+        }catch (Exception e) {
             System.out.println(e);
             return new Result<>().error();
         }
-        return new Result<>().success(books);
+        return new Result<>().success(bookPage);
+
     }
 
     @Override
@@ -56,6 +47,20 @@ public class CommonServiceImpl implements CommonService {
         }
         return new Result<>().success(book);
     }
+
+    @Override
+    public Result<?> findAllBook(int pageNum, int pageSize) {
+        Page<Book> bookPage;
+        try {
+            LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery();
+            bookPage = commonMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new Result<>().error();
+        }
+        return new Result<>().success(bookPage);
+    }
+
 
 
 }
