@@ -48,4 +48,9 @@ public class BookController {
         return bookService.findBookByName(name, pageNum, pageSize);
     }
 
+    @GetMapping("/search/{keywords}")
+    public Result<?> search(@PathVariable String keywords){
+        return bookService.search(keywords);
+    }
+
 }

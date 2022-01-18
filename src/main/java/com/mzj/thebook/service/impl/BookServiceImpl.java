@@ -10,6 +10,8 @@ import com.mzj.thebook.entity.Book;
 import com.mzj.thebook.service.BookService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
@@ -90,6 +92,18 @@ public class BookServiceImpl implements BookService {
             return new Result<>().error();
         }
         return new Result<>().success(bookPage);
+    }
+
+    @Override
+    public Result<?> search(String keywords) {
+        ArrayList<Book> books;
+        try {
+            books = bookMapper.search(keywords);
+        } catch (Exception e) {
+            System.out.println(e);
+            return new Result<>().error();
+        }
+        return new Result<>().success(books);
     }
 
 
