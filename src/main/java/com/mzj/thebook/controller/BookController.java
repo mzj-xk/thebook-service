@@ -1,4 +1,5 @@
 package com.mzj.thebook.controller;
+
 import com.mzj.thebook.Result;
 import com.mzj.thebook.entity.Book;
 import com.mzj.thebook.service.impl.BookServiceImpl;
@@ -49,8 +50,15 @@ public class BookController {
     }
 
     @GetMapping("/search/{keywords}")
-    public Result<?> search(@PathVariable String keywords){
+    public Result<?> search(@PathVariable String keywords) {
         return bookService.search(keywords);
+    }
+
+    @GetMapping("/detail")
+    public Result<?> detail(@RequestParam(defaultValue = "") String bookId,
+                            @RequestParam(defaultValue = "1") int pageNum,
+                            @RequestParam(defaultValue = "10") int pageSize) {
+        return bookService.detail(bookId, pageNum, pageSize);
     }
 
 }

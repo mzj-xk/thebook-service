@@ -18,4 +18,6 @@ public interface BookService {
     Result<?> findBookByName(String name, int pageNum, int pageSize);
 
     Result<?> search(String keywords);
+
+    Result<?> detail(String id, int pageNum, int pageSize);
 }

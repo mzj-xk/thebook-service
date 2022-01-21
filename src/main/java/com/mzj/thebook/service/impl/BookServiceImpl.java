@@ -5,8 +5,13 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mzj.thebook.IdUtil;
 import com.mzj.thebook.Result;
+import com.mzj.thebook.dao.BookCommentaryMapper;
 import com.mzj.thebook.dao.BookMapper;
+import com.mzj.thebook.dao.BookShortCommentaryMapper;
 import com.mzj.thebook.entity.Book;
+import com.mzj.thebook.entity.BookCommentary;
+import com.mzj.thebook.entity.BookDetail;
+import com.mzj.thebook.entity.BookShortCommentary;
 import com.mzj.thebook.service.BookService;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +20,13 @@ import java.util.ArrayList;
 @Service
 public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
+    private final BookShortCommentaryMapper bookShortCommentaryMapper;
+    private final BookCommentaryMapper bookCommentaryMapper;
 
-    public BookServiceImpl(BookMapper bookMapper) {
+    public BookServiceImpl(BookMapper bookMapper, BookShortCommentaryMapper bookShortCommentaryMapper, BookCommentaryMapper bookCommentaryMapper) {
         this.bookMapper = bookMapper;
+        this.bookShortCommentaryMapper = bookShortCommentaryMapper;
+        this.bookCommentaryMapper = bookCommentaryMapper;
     }
 
     @Override
@@ -104,6 +113,25 @@ public class BookServiceImpl implements BookService {
             return new Result<>().error();
         }
         return new Result<>().success(books);
+    }
+
+    @Override
+    public Result<?> detail(String id, int pageNum, int pageSize) {
+        Book bookInfo;
+        Page<BookShortCommentary> bookShortCommentary;
+        Page<BookCommentary> bookCommentary;
+        try {
+            bookInfo = bookMapper.selectById(id);
+            LambdaQueryWrapper<BookShortCommentary> wrapper1 = Wrappers.<BookShortCommentary>lambdaQuery().eq(BookShortCommentary::getBookId, id);
+            LambdaQueryWrapper<BookCommentary> wrapper2 = Wrappers.<BookCommentary>lambdaQuery().eq(BookCommentary::getBookId, id);
+            bookShortCommentary = bookShortCommentaryMapper.selectPage(new Page<>(pageNum, pageSize), wrapper1);
+            bookCommentary = bookCommentaryMapper.selectPage(new Page<>(pageNum, pageSize), wrapper2);
+        }catch (Exception e) {
+            System.out.println(e);
+            return new Result<>().error();
+        }
+        BookDetail bookDetail = new BookDetail(bookInfo, bookShortCommentary, bookCommentary);
+        return new Result<>().success(bookDetail);
     }
 
 
