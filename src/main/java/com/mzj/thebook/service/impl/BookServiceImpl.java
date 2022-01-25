@@ -16,6 +16,7 @@ import com.mzj.thebook.service.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -134,5 +135,26 @@ public class BookServiceImpl implements BookService {
         return new Result<>().success(bookDetail);
     }
 
+    @Override
+    public Result<?> addShortCommentary(BookShortCommentary bookShortCommentary) {
+        try {
+            bookShortCommentaryMapper.insert(bookShortCommentary);
+        }catch (Exception e) {
+            System.out.println(e);
+            return new Result<>().error();
+        }
+        return new Result<>().success(null);
+    }
+
+    @Override
+    public Result<?> deleteShortCommentary(String commentaryId) {
+        try {
+            bookShortCommentaryMapper.deleteById(commentaryId);
+        }catch (Exception e) {
+            System.out.println(e);
+            return new Result<>().error();
+        }
+        return new Result<>().success(null);
+    }
 
 }

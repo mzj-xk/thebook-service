@@ -3,6 +3,7 @@ package com.mzj.thebook;
 import com.mzj.thebook.controller.UserController;
 import com.mzj.thebook.dao.BookMapper;
 import com.mzj.thebook.entity.Book;
+import com.mzj.thebook.entity.BookShortCommentary;
 import com.mzj.thebook.service.impl.BookServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,9 @@ class ThebookApplicationTests {
 
     @Test
     void test() {
-        Result<?> result = bookService.detail("1",1,10);
-        System.out.println(result);
+//        Result<?> result = bookService.detail("1",1,10);
+        bookService.addShortCommentary(new BookShortCommentary("ewqrqer",5,"111"));
+//        bookService.deleteShortCommentary("111");
     }
 
 

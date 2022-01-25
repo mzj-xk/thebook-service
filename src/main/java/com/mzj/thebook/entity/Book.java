@@ -1,6 +1,7 @@
 package com.mzj.thebook.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName("book_info")
 public class Book {
+    @TableId
     private String id;
     private String name;
     private String cover;
