@@ -11,22 +11,25 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @TableName("book_short_commentary")
+@AllArgsConstructor
 public class BookShortCommentary {
     @TableId
+    private String commentaryId;
     private String bookId;
     private String userId;
+    private String username;
     private float score;
     private String content;
     private Date time;
 
-    public BookShortCommentary(String userId, float score, String content) {
-        this.bookId = IdUtil.getId();
+    public BookShortCommentary(String bookId, String userId, String username,float score, String content) {
+        this.bookId = bookId;
         this.userId = userId;
+        this.username = username;
         this.score = score;
         this.content = content;
-        this.time = new Date();
     }
+
 }

@@ -29,7 +29,6 @@ class ThebookApplicationTests {
     @Test
     void test() {
 //        Result<?> result = bookService.detail("1",1,10);
-        bookService.addShortCommentary(new BookShortCommentary("ewqrqer",5,"111"));
 //        bookService.deleteShortCommentary("111");
     }
 

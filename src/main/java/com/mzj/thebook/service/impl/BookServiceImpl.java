@@ -138,6 +138,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public Result<?> addShortCommentary(BookShortCommentary bookShortCommentary) {
         try {
+            bookShortCommentary.setCommentaryId(IdUtil.getId());
+            bookShortCommentary.setTime(new Date());
             bookShortCommentaryMapper.insert(bookShortCommentary);
         }catch (Exception e) {
             System.out.println(e);
@@ -150,6 +152,30 @@ public class BookServiceImpl implements BookService {
     public Result<?> deleteShortCommentary(String commentaryId) {
         try {
             bookShortCommentaryMapper.deleteById(commentaryId);
+        }catch (Exception e) {
+            System.out.println(e);
+            return new Result<>().error();
+        }
+        return new Result<>().success(null);
+    }
+
+    @Override
+    public Result<?> addCommentary(BookCommentary bookCommentary) {
+        try {
+            bookCommentary.setCommentaryId(IdUtil.getId());
+            bookCommentary.setTime(new Date());
+            bookCommentaryMapper.insert(bookCommentary);
+        }catch (Exception e) {
+            System.out.println(e);
+            return new Result<>().error();
+        }
+        return new Result<>().success(null);
+    }
+
+    @Override
+    public Result<?> deleteCommentary(String commentaryId) {
+        try {
+            bookCommentaryMapper.deleteById(commentaryId);
         }catch (Exception e) {
             System.out.println(e);
             return new Result<>().error();

@@ -2,6 +2,7 @@ package com.mzj.thebook.service;
 
 import com.mzj.thebook.Result;
 import com.mzj.thebook.entity.Book;
+import com.mzj.thebook.entity.BookCommentary;
 import com.mzj.thebook.entity.BookShortCommentary;
 
 
@@ -25,4 +26,8 @@ public interface BookService {
     Result<?> addShortCommentary(BookShortCommentary bookShortCommentary);
 
     Result<?>deleteShortCommentary(String commentaryId);
+
+    Result<?> addCommentary(BookCommentary bookCommentary);
+
+    Result<?> deleteCommentary(String commentaryId);
 }

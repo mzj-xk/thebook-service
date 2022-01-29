@@ -13,15 +13,18 @@ import java.util.Date;
 @NoArgsConstructor
 public class BookCommentary {
     @TableId
+    private String commentaryId;
     private String bookId;
     private String userId;
+    private String username;
     private float score;
     private String content;
     private Date time;
 
-    public BookCommentary(String bookId, String userId, float score, String content) {
+    public BookCommentary(String bookId, String userId,String username ,float score, String content) {
         this.bookId = bookId;
         this.userId = userId;
+        this.username = username;
         this.score = score;
         this.content = content;
     }

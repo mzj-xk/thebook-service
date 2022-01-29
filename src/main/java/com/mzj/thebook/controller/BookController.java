@@ -2,6 +2,7 @@ package com.mzj.thebook.controller;
 
 import com.mzj.thebook.Result;
 import com.mzj.thebook.entity.Book;
+import com.mzj.thebook.entity.BookCommentary;
 import com.mzj.thebook.entity.BookShortCommentary;
 import com.mzj.thebook.service.impl.BookServiceImpl;
 import org.springframework.web.bind.annotation.*;
@@ -67,9 +68,19 @@ public class BookController {
         return bookService.addShortCommentary(bookShortCommentary);
     }
 
+    @PostMapping("/addCommentary")
+    public Result<?> addCommentary(@RequestBody BookCommentary bookCommentary) {
+        return bookService.addCommentary(bookCommentary);
+    }
+
     @GetMapping("/deleteShortCommentary/{id}")
     public Result<?> deleteShortCommentary(@PathVariable String id) {
         return bookService.deleteShortCommentary(id);
+    }
+
+    @GetMapping("/deleteCommentary/{id}")
+    public Result<?> deleteCommentary(@PathVariable String id){
+        return bookService.deleteCommentary(id);
     }
 
 }
