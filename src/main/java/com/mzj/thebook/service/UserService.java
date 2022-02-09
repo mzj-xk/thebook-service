@@ -6,6 +6,8 @@ import com.mzj.thebook.entity.User;
 public interface UserService {
     Result<?> createUser(User user);
 
+    Result<?> login(String email, String password);
+
     Result<?> deleteUser(String id);
 
     Result<?> updateUser(User book);
